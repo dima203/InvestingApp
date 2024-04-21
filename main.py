@@ -60,11 +60,14 @@ def main(page: flet.Page) -> None:
                 for hour in range(24):
                     money += money * float(percent_field.value) / 12 / 30 / 24 * (1 - float(tax.value))
                     if interval == 'hour':
-                        data.append(flet.LineChartDataPoint(month * 30 * 24 + day * 24 + hour + 1, money))
+                        data.append(flet.LineChartDataPoint(month * 30 * 24 + day * 24 + hour + 1, money,
+                                                            tooltip=f'{money:.4f}'))
                 if interval == 'day':
-                    data.append(flet.LineChartDataPoint(month * 30 + day + 1, money))
+                    data.append(flet.LineChartDataPoint(month * 30 + day + 1, money,
+                                                        tooltip=f'{money:.4f}'))
             if interval == 'month':
-                data.append(flet.LineChartDataPoint(month + 1, money))
+                data.append(flet.LineChartDataPoint(month + 1, money,
+                                                    tooltip=f'{money:.4f}'))
 
         data = flet.LineChartData(data_points=data)
 
@@ -107,7 +110,7 @@ def main(page: flet.Page) -> None:
         [
             flet.Row(
                 [
-                    flet.Text('Test'),
+                    flet.Text('Investing App', size=30),
                 ],
                 alignment=flet.MainAxisAlignment.CENTER
             ),
